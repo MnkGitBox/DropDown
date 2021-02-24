@@ -125,7 +125,17 @@ public final class DropDown: UIView {
 	public var topOffset: CGPoint = .zero {
 		didSet { setNeedsUpdateConstraints() }
 	}
+    
+/**
+    Leading space of the drop down
+    Defautls to zero.
+    If you want to move drop down menu please add space
+ */
 
+
+public var leadingSpace: CGFloat = 0 {
+    didSet { setNeedsUpdateConstraints() }
+}
 	/**
 	The offset point relative to `anchorView` when the drop down is shown below the anchor view.
 
@@ -575,7 +585,7 @@ extension DropDown {
 			return
 		}
 
-		xConstraint.constant = layout.x
+        xConstraint.constant = layout.x + leadingSpace
 		yConstraint.constant = layout.y
 		widthConstraint.constant = layout.width
 		heightConstraint.constant = layout.visibleHeight
